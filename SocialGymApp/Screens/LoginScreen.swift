@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AuthenticationServices
 
 struct LoginScreen: View {
     @State private var email = ""
@@ -33,32 +32,9 @@ struct LoginScreen: View {
                     .font(Font.largeTitle.bold())
                     .foregroundStyle(.white)
                     .frame(maxWidth: 290, alignment: .leading)
-                HStack {
-                    Spacer()
-                    Image(systemName: "at")
-                        .foregroundStyle(.white)
-                    VStack {
-                        TextField("", text: $email, prompt: Text("Email").foregroundColor(.gray))
-                        Divider()
-                            .overlay(.white)
-                    }
-                    Spacer()
-                }
-                .padding(.horizontal, 50)
-                .padding(.vertical, 15)
-                HStack {
-                    Spacer()
-                    Image(systemName: "lock")
-                        .foregroundStyle(.white)
-                    VStack {
-                        TextField("", text: $password, prompt: Text("Password").foregroundColor(.gray))
-                        Divider()
-                            .overlay(.white)
-                    }
-                    Spacer()
-                }
-                .padding(.horizontal, 50)
-                .padding(.vertical, 15)
+                LoginInputField(systemImage: "at", placeholder: "Email", text: $email, isSecure: false)
+                LoginInputField(systemImage: "lock", placeholder: "Password", text: $password, isSecure: true)
+
                 VStack(alignment: .leading) {
                     Button("Forgot Password?") {
                         // Forgot password logic
@@ -66,38 +42,8 @@ struct LoginScreen: View {
                     .frame(maxWidth: 290, alignment: .trailing)
                 }
                 .padding(10)
-                Button("Login") {
-                    // login logic
-                }
-                .frame(width: 290, height: 50)
-                .background(Color.white)
-                .foregroundStyle(Color.primary)
-                .cornerRadius(10)
-                .padding(.top, 10)
-
-                HStack(spacing: 12) {
-                    Rectangle()
-                        .fill(Color.white.opacity(0.4))
-                        .frame(height: 1)
-                    Text("OR")
-                        .foregroundStyle(Color.gray)
-                    Rectangle()
-                        .fill(Color.white.opacity(0.4))
-                        .frame(height: 1)
-                }
-                .padding(.vertical, 10)
-                .frame(width: 290)
-                SignInWithAppleButton(.signIn) { request in
-                    // You can leave this empty while building UI
-                    // request.requestedScopes = [.fullName, .email]
-                } onCompletion: { result in
-                    // Handle result later when wiring up auth
-                }
-                .signInWithAppleButtonStyle(.white)
-                .opacity(0.7)
-                .frame(width: 290, height: 50)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.bottom, 20)
+                LoginOptionsView()
+                    .padding(.top, 10)
                 Spacer()
                 HStack {
                     Text("New to Spotter?")
