@@ -16,6 +16,7 @@ struct SocialGymAppApp: App {
             switch currentScreen {
             case .login:
                 LoginScreen()
+                    .preferredColorScheme(.dark)
             case .main:
                 ContentView()
             }

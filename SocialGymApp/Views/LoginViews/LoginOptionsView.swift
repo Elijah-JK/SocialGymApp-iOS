@@ -9,15 +9,23 @@ import AuthenticationServices
 import SwiftUI
 
 struct LoginOptionsView: View {
+    @Binding var email: String
+    @Binding var password: String
+    
     var body: some View {
         VStack(spacing: 15) {
-            Button("Login") {
-                // login logic
+            Button {
+                // action
+                print("Finally!")
+            } label: {
+                Text("Login")
+                    .foregroundStyle(.black)
+                    .frame(width: 290, height: 50)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .contentShape(RoundedRectangle(cornerRadius: 10))
             }
-            .frame(width: 290, height: 50)
-            .background(Color.white)
-            .foregroundStyle(Color.primary)
-            .cornerRadius(10)
+            .disabled(email.isEmpty || password.isEmpty)
 
             HStack(spacing: 12) {
                 Rectangle().fill(Color.white.opacity(0.4)).frame(height: 1)
@@ -37,5 +45,5 @@ struct LoginOptionsView: View {
 }
 
 #Preview {
-    LoginOptionsView()
+    LoginOptionsView(email: .constant(""), password: .constant(""))
 }

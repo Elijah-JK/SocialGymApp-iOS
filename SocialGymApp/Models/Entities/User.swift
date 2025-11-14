@@ -16,7 +16,7 @@ struct User: Identifiable {
     var email: String
     var username: String
     var bio: String?
-    var isPrivate: Bool
+    var isPrivate: Bool = false
     var joinedDate: Date
     
     var followers: [UUID]

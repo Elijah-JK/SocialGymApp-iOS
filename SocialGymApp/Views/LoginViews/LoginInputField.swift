@@ -21,8 +21,10 @@ struct LoginInputField: View {
             VStack {
                 if isSecure {
                     SecureField("", text: $text, prompt: Text(placeholder).foregroundColor(.gray))
+                        .foregroundStyle(.white)
                 } else {
                     TextField("", text: $text, prompt: Text(placeholder).foregroundColor(.gray))
+                        .foregroundStyle(.white)
                 }
                 Divider().overlay(.white)
             }
