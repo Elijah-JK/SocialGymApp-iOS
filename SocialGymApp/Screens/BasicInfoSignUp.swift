@@ -7,6 +7,29 @@
 
 import SwiftUI
 
+struct CustomFrame: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: 325, alignment: .leading)
+            .background(Color.white.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .contentShape(RoundedRectangle(cornerRadius: 10))
+            .foregroundStyle(.white)
+    }
+}
+
+struct CustomFrameV2: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: 325, alignment: .init(horizontal: .leading, vertical: .center))
+            .background(Color.white.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .contentShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
+
 struct BasicInfoSignUp: View {
     @State private var firstName = ""
     @State private var lastName = ""
@@ -26,25 +49,13 @@ struct BasicInfoSignUp: View {
                     
                     TextField("", text: $firstName, prompt: Text("First Name").foregroundStyle(.gray))
                         .padding(20)
-                        .frame(maxWidth: 325, alignment: .leading)
-                        .background(Color.white.opacity(0.1))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .contentShape(RoundedRectangle(cornerRadius: 10))
-                        .foregroundStyle(.white)
+                        .modifier(CustomFrame())
                     TextField("", text: $lastName, prompt: Text("Last Name").foregroundStyle(.gray))
                         .padding(20)
-                        .frame(maxWidth: 325, alignment: .leading)
-                        .background(Color.white.opacity(0.1))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .contentShape(RoundedRectangle(cornerRadius: 10))
-                        .foregroundStyle(.white)
+                        .modifier(CustomFrame())
                     DatePicker("Date of Birth", selection: $DOB, displayedComponents: .date)
                         .padding()
-                        .frame(maxWidth: 325, alignment: .init(horizontal: .leading, vertical: .center))
-                        .background(Color.white.opacity(0.1))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .contentShape(RoundedRectangle(cornerRadius: 10))
-                        .datePickerStyle(.compact)
+                        .modifier(CustomFrameV2())
                         .foregroundStyle(.gray)
                         .tint(.teal)
                     
@@ -60,10 +71,7 @@ struct BasicInfoSignUp: View {
                                 }
                             }
                             .padding(20)
-                            .frame(maxWidth: 325, alignment: .leading)
-                            .background(Color.white.opacity(0.1))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .contentShape(RoundedRectangle(cornerRadius: 10))
+                            .modifier(CustomFrame())
                             .onTapGesture {
                                 selectedGender = gender
                             }
