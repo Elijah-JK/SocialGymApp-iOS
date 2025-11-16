@@ -11,7 +11,7 @@ struct CustomFrame: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .frame(maxWidth: 325, alignment: .leading)
+            .frame(maxWidth: 325, alignment: .trailing)
             .background(Color.white.opacity(0.1))
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .contentShape(RoundedRectangle(cornerRadius: 10))
