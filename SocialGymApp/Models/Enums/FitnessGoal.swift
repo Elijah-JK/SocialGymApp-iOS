@@ -13,4 +13,7 @@ enum FitnessGoal {
     case endurance
     case flexibility
     case weightLoss
+    case active
+    case mobility
+    case generalHealth
 }
