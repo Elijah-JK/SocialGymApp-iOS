@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfilePreferences: View {
     @State private var bio: String = ""
+    @State private var username: String = ""
     @State private var isPublic: Bool = true
     
     var body: some View {
@@ -17,6 +18,19 @@ struct ProfilePreferences: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 20) {
+                
+                Section {
+                    TextField("", text: $username, prompt: Text("Number1L1fter").foregroundStyle(.gray))
+                        .padding()
+                        .modifier(CustomFrame())
+                    
+                } header: {
+                    Text("Username")
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: 290, alignment: .leading)
+                        .padding(.top, 20)
+                }
                 // will have an upload picture soon
                 
                 Section {
@@ -67,7 +81,7 @@ struct ProfilePreferences: View {
                 Spacer()
                 
                 NavigationLink {
-                    FitnessGoals()
+                    AccountSetup()
                 } label: {
                     Text("Continue")
                         .foregroundStyle(.black)
@@ -77,6 +91,7 @@ struct ProfilePreferences: View {
                         .contentShape(RoundedRectangle(cornerRadius: 10))
                 }
                 .padding(.bottom, 20)
+                .disabled(username.isEmpty)
             }
         }
         .navigationTitle("Profile Preferences")
